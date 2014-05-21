@@ -1,5 +1,8 @@
 # vim-anywhere
 
+**NOTE**: this is my (mwcz's) customized fork of vim-anywhere.  Mine launches
+vim inside xterm, whereas the official vim-anywhere project launches gvim.
+
 Sometimes, you edit text outside of Vim. These are sad times. Enter
 vim-anywhere!
 
