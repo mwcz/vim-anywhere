@@ -40,12 +40,23 @@ TMPFILE_DIR=/tmp/vim-anywhere
 TMPFILE=$TMPFILE_DIR/doc-$(date +"%y%m%d%H%M%S")
 
 mkdir -p $TMPFILE_DIR
-touch $TMPFILE
+
+#LINUX_EDITOR_CMD="terminator -e 'vim $TMPFILE'"
+#LINUX_EDITOR_CMD="gvim +'set ft=mail' +'set list!' --nofork $TMPFILE"
+#LINUX_EDITOR_CMD="gnome-terminal -e 'vim $TMPFILE'"
+
+# launch vimx inside xterm, fet filetype to mail, and toggle `list` so
+# unprintable characters (tabs, newlines) aren't printed.  those are useful to
+# see in code but not so much when writing emails, etc.
+# bashrc must be sourced because `xterm -e cmd` doesn't run bashrc first.  my
+# bashrc enabled 256 color xterm, so I'm sourcing it here.
+LINUX_EDITOR_CMD="xterm -e 'source ~/.bashrc; vimx +\"set ft=mail\" +\"set list!\" $TMPFILE'"
 
 # Linux
 if [[ $OSTYPE == "linux-gnu" ]]; then
+  xclip -o > $TMPFILE
   chmod o-r $TMPFILE # Make file only readable by you
-  gvim --nofork $TMPFILE
+  eval $LINUX_EDITOR_CMD
   cat $TMPFILE | xclip -selection clipboard
 
 # OSX
