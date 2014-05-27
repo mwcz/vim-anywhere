@@ -50,7 +50,7 @@ mkdir -p $TMPFILE_DIR
 # see in code but not so much when writing emails, etc.
 # bashrc must be sourced because `xterm -e cmd` doesn't run bashrc first.  my
 # bashrc enabled 256 color xterm, so I'm sourcing it here.
-LINUX_EDITOR_CMD="xterm -e 'source ~/.bashrc; vimx +\"set ft=mail\" +\"set list!\" $TMPFILE'"
+LINUX_EDITOR_CMD="xterm -e 'source ~/.bashrc; vimx +\"set ft=mail\" +\"set list!\" +\"set wrap\" +\"set linebreak\" $TMPFILE'"
 
 # Linux
 if [[ $OSTYPE == "linux-gnu" ]]; then
